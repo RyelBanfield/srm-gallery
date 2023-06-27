@@ -2,7 +2,9 @@
 
 const nextConfig = {
   reactStrictMode: true,
-  images: {},
+  images: {
+    domains: ["ik.imagekit.io"],
+  },
 };
 
 export default nextConfig;
