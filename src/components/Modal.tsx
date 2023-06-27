@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 
 type Inputs = { email: string };
@@ -12,6 +12,8 @@ const Modal = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
+
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -25,14 +27,27 @@ const Modal = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data.email);
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    setSubmitting(true);
+
+    const email = data.email;
+
+    await fetch("/api/form-submission", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(email),
+    });
 
     const modalToggle = document.getElementById(
       "form_modal"
     ) as unknown as ModalToggleType;
 
     if (modalToggle) modalToggle.checked = false;
+
+    setSubmitting(false);
   };
 
   return (
@@ -63,11 +78,15 @@ const Modal = () => {
               <span className="text-red-500">Invalid email</span>
             )}
 
-            <input
-              type="submit"
-              onClick={() => onSubmit}
-              className="btn mb-3"
-            />
+            {!submitting && (
+              <input type="submit" onClick={() => onSubmit} className="btn" />
+            )}
+
+            {submitting && (
+              <div className="btn">
+                <span className="loading loading-dots loading-md"></span>
+              </div>
+            )}
           </form>
         </div>
       </div>
