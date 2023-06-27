@@ -1,13 +1,10 @@
 "use client";
 
-import { EnvelopeIcon } from "@heroicons/react/24/outline";
 import { useEffect } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 
 type Inputs = { email: string };
-type ModalToggleType = {
-  checked: boolean;
-};
+type ModalToggleType = { checked: boolean };
 
 const Modal = () => {
   const {
@@ -15,18 +12,6 @@ const Modal = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
-
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data);
-
-    const modalToggle = document.getElementById(
-      "form_modal"
-    ) as unknown as ModalToggleType;
-
-    if (modalToggle) {
-      modalToggle.checked = false;
-    }
-  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -40,13 +25,18 @@ const Modal = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    console.log(data.email);
+
+    const modalToggle = document.getElementById(
+      "form_modal"
+    ) as unknown as ModalToggleType;
+
+    if (modalToggle) modalToggle.checked = false;
+  };
+
   return (
     <>
-      {/* <label htmlFor="form_modal" className="btn mb-6 w-full max-w-lg">
-        <EnvelopeIcon className="h-6 w-6" />
-        Share email
-      </label> */}
-
       <input type="checkbox" id="form_modal" className="modal-toggle" />
 
       <div className="modal modal-middle sm:modal-middle">
@@ -62,11 +52,16 @@ const Modal = () => {
           >
             <input
               placeholder="srm@gmail.com"
-              {...register("email", { required: true })}
+              {...register("email", {
+                required: true,
+                pattern: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/i,
+              })}
               className="rounded-md p-3"
             />
 
-            {errors.email && <span>This field is required</span>}
+            {errors.email && (
+              <span className="text-red-500">Invalid email</span>
+            )}
 
             <input
               type="submit"
@@ -74,12 +69,6 @@ const Modal = () => {
               className="btn mb-3"
             />
           </form>
-
-          {/* <div className="modal-action m-0">
-            <label htmlFor="form_modal" className="btn w-full">
-              Close
-            </label>
-          </div> */}
         </div>
       </div>
     </>
