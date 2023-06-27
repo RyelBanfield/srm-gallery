@@ -42,10 +42,10 @@ const Modal = () => {
 
   return (
     <>
-      <label htmlFor="form_modal" className="btn mb-6 w-full max-w-lg">
+      {/* <label htmlFor="form_modal" className="btn mb-6 w-full max-w-lg">
         <EnvelopeIcon className="h-6 w-6" />
         Share email
-      </label>
+      </label> */}
 
       <input type="checkbox" id="form_modal" className="modal-toggle" />
 
