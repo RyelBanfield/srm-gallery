@@ -15,17 +15,17 @@ const Modal = () => {
 
   const [submitting, setSubmitting] = useState(false);
 
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     const modalToggle = document.getElementById(
-  //       "form_modal"
-  //     ) as unknown as ModalToggleType;
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const modalToggle = document.getElementById(
+        "form_modal"
+      ) as unknown as ModalToggleType;
 
-  //     if (modalToggle) modalToggle.checked = true;
-  //   }, 3000);
+      if (modalToggle) modalToggle.checked = true;
+    }, 3000);
 
-  //   return () => clearTimeout(timer);
-  // }, []);
+    return () => clearTimeout(timer);
+  }, []);
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     setSubmitting(true);
