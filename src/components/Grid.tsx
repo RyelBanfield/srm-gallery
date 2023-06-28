@@ -12,7 +12,7 @@ type Props = {
 
 const Grid = ({ urlEndpoint, images }: Props) => {
   return (
-    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
+    <div className="columns-2 sm:columns-3 md:columns-4 lg:columns-5">
       {images.map((image) => (
         <div key={image.fileId}>
           {/* @ts-ignore  */}
@@ -20,12 +20,11 @@ const Grid = ({ urlEndpoint, images }: Props) => {
             alt=""
             urlEndpoint={urlEndpoint}
             path={image.filePath}
-            transformation={[{ width: "540", height: "960" }]}
-            width={540}
-            height={960}
+            transformation={[{ height: "1000" }]}
+            height={1000}
             lqip={{ active: true, quality: 40, blur: 5 }}
             loading="lazy"
-            className="rounded-lg"
+            className="mb-6 rounded-lg"
           />
         </div>
       ))}
