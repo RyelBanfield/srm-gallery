@@ -4,7 +4,10 @@ import Grid from "@/components/Grid";
 import Modal from "@/components/Modal";
 
 const Home = async () => {
-  const imageUrlsResponse = await fetch("http://localhost:3000/api/image-urls");
+  const imageUrlsResponse = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL as string}/api/image-urls`
+  );
+
   const imageUrls = (await imageUrlsResponse.json()) as FileObject[];
 
   return (
