@@ -1,5 +1,5 @@
 import { google } from "googleapis";
-import { type NextRequest } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
   const body = (await request.json()) as string;
@@ -28,12 +28,8 @@ export async function POST(request: NextRequest) {
       },
     });
 
-    return new Response(JSON.stringify(response.data), {
-      status: 200,
-    });
+    return NextResponse.json(response.data);
   } catch (error) {
-    return new Response(JSON.stringify(error), {
-      status: 500,
-    });
+    return NextResponse.json(error);
   }
 }

@@ -1,14 +1,12 @@
-import { type FileObject } from "imagekit/dist/libs/interfaces";
+// import { type FileObject } from "imagekit/dist/libs/interfaces";
 
-import Grid from "@/components/Grid";
+// import Grid from "@/components/Grid";
 import Modal from "@/components/Modal";
 
-const Home = async () => {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL as string;
-  const imageUrlsResponse = await fetch(`${baseUrl}/api/image-urls`, {
-    next: { revalidate: 86400 },
-  });
-  const imageUrls = (await imageUrlsResponse.json()) as FileObject[];
+const Home = () => {
+  // const baseUrl = process.env.NEXT_PUBLIC_BASE_URL as string;
+  // const imageUrlsResponse = await fetch(`${baseUrl}/api/image-urls`, {});
+  // const imageUrls = (await imageUrlsResponse.json()) as FileObject[];
 
   return (
     <main className="min-h-screen px-3">
@@ -18,7 +16,7 @@ const Home = async () => {
 
       <Modal />
 
-      <Grid urlEndpoint="https://ik.imagekit.io/zuge4mgxf" images={imageUrls} />
+      {/* <Grid urlEndpoint="https://ik.imagekit.io/zuge4mgxf" images={imageUrls} /> */}
     </main>
   );
 };

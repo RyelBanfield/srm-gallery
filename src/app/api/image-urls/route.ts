@@ -1,4 +1,5 @@
 import ImageKit from "imagekit";
+import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
@@ -12,12 +13,8 @@ export async function GET() {
 
     const imageUrls = await imagekit.listFiles({});
 
-    return new Response(JSON.stringify(imageUrls), {
-      status: 200,
-    });
+    return NextResponse.json(imageUrls);
   } catch (error) {
-    return new Response(JSON.stringify(error), {
-      status: 500,
-    });
+    return NextResponse.json(error);
   }
 }
