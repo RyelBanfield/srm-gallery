@@ -4,10 +4,8 @@ import Grid from "@/components/Grid";
 import Modal from "@/components/Modal";
 
 const Home = async () => {
-  const imageUrlsResponse = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL as string}/api/image-urls`
-  );
-
+  const baseUrl = process.env.BASE_URL as string;
+  const imageUrlsResponse = await fetch(`${baseUrl}/api/image-urls`);
   const imageUrls = (await imageUrlsResponse.json()) as FileObject[];
 
   return (
