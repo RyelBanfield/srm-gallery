@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
+import { useLocalStorage } from "usehooks-ts";
 
 type Inputs = { email: string };
 type ModalToggleType = { checked: boolean };
@@ -14,6 +15,10 @@ const Modal = () => {
   } = useForm<Inputs>();
 
   const [submitting, setSubmitting] = useState(false);
+  const [emailSubmitted, setEmailSubmitted] = useLocalStorage(
+    "emailSubmitted",
+    false
+  );
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -21,11 +26,12 @@ const Modal = () => {
         "form_modal"
       ) as unknown as ModalToggleType;
 
+      if (emailSubmitted) return;
       if (modalToggle) modalToggle.checked = true;
     }, 3000);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [emailSubmitted]);
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     setSubmitting(true);
@@ -47,6 +53,7 @@ const Modal = () => {
 
     if (modalToggle) modalToggle.checked = false;
 
+    setEmailSubmitted(true);
     setSubmitting(false);
   };
 
