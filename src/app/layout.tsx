@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "SRM - Gallery",
-  description: "Check out those SRM pics!",
+  description: "Check out the SRM gallery.",
 };
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
