@@ -20,9 +20,9 @@ const Grid = ({ urlEndpoint, images }: Props) => {
             alt=""
             urlEndpoint={urlEndpoint}
             path={image.filePath}
-            transformation={[{ width: "1080", height: "1920" }]}
-            width={1080}
-            height={1920}
+            transformation={[{ width: "540", height: "960" }]}
+            width={540}
+            height={960}
             lqip={{ active: true, quality: 40, blur: 5 }}
             loading="lazy"
             className="rounded-lg"
