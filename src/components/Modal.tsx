@@ -71,7 +71,7 @@ const Modal = () => {
                 required: true,
                 pattern: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/i,
               })}
-              className="rounded-md p-3"
+              className="rounded-sm p-3"
             />
 
             {errors.email && (
