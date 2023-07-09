@@ -13,7 +13,9 @@ const Home = async () => {
   return (
     <div className="min-h-screen px-3">
       <header className="p-6">
-        <h1 className="text-center text-2xl font-bold">SRM Gallery</h1>
+        <h1 className="text-center text-2xl font-bold">
+          Summer Road March 2023
+        </h1>
       </header>
 
       <main className="mb-6">
